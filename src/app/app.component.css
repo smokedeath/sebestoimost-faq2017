@@ -1,0 +1,31 @@
+.centeral-form{
+    margin-left: 50px;
+    margin-top: 50px;
+    margin-right: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+.quest-panel{
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 5px;
+    font-size: 16px;
+}
+.label-css{
+    text-align: left;
+    font-size: 18px;
+    margin-top: 5px;
+}
+.btn-close-css{
+   text-align: right;
+   cursor: pointer;
+}
+.left {
+    height: 100%;
+    /*background-color: #ddf;*/
+}
+
+.right {
+    height: 100%;
+    /*background-color: #dfd;*/
+}
