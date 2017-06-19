@@ -17,32 +17,34 @@ export class AppComponent implements OnInit {
   searchVop(){
     let vopId = 0;
     let vopSearchModel = [];
-    this.searchModel = [];
-    for (let i=0; i<this.faq.length; i++){
-      if (this.faq[i].quest.indexOf(this.search)>=0){
-        vopSearchModel.push({id: this.faq[i].id});
-      }
-    }
-    for (let i=0; i<this.otv.length; i++){
-      for (let a=0; a<this.otv[i].otvet.length; a++){
-        if (this.otv[i].otvet[a].text.indexOf(this.search)>=0){
-          vopSearchModel.push({id: this.otv[i].id});
+    if (this.search.length>0){
+      this.searchModel = [];
+      for (let i=0; i<this.faq.length; i++){
+        if (this.faq[i].quest.indexOf(this.search)>=0){
+          vopSearchModel.push({id: this.faq[i].id});
         }
       }
-    }
-    for (let i=0; i<vopSearchModel.length; i++){
-      if (vopSearchModel[i].id > vopId){
-        this.searchModel.push(this.faq[vopSearchModel[i].id-1]);
-        vopId = vopSearchModel[i].id;
+      for (let i=0; i<this.otv.length; i++){
+        for (let a=0; a<this.otv[i].otvet.length; a++){
+          if (this.otv[i].otvet[a].text.indexOf(this.search)>=0){
+            vopSearchModel.push({id: this.otv[i].id});
+          }
+        }
       }
+      for (let i=0; i<vopSearchModel.length; i++){
+        if (vopSearchModel[i].id > vopId){
+          this.searchModel.push(this.faq[vopSearchModel[i].id-1]);
+          vopId = vopSearchModel[i].id;
+        }
+      }
+      for (let i=0; i<this.otv.length; i++){
+        this.otv[i].visible = false;      
+      }
+      for (let i=0; i<this.searchModel.length; i++){
+        this.otv[this.searchModel[i].id-1].visible = true;
+      }
+      this.getotvModel();
     }
-    for (let i=0; i<this.otv.length; i++){
-      this.otv[i].visible = false;      
-    }
-    for (let i=0; i<this.searchModel.length; i++){
-      this.otv[this.searchModel[i].id-1].visible = true;
-    }
-    this.getotvModel();
   }
 
   clearsearchVop(){
