@@ -1,10 +1,16 @@
 <div class="centeral-form">
   <p-panel header="Часто задаваемые вопросы">   
+    <div class="row align-css" >
+      <div class="col-lg-1">Найти вопрос: </div>
+      <div class="col-lg-3"><input type="text" name="login" [(ngModel)]="search" style="width: 100%"></div>
+      <div class="col-lg-1"><button class="btn btn-primary" (click)="searchVop()"><i class="material-icons vert-align">search</i>  Найти</button></div>
+      <div class="col-lg-1"><button class="btn btn-primary" (click)="clearsearchVop()"><i class="material-icons vert-align">highlight_off</i>  Очистить поиск</button></div>
+    </div>
     <vertical-split-pane primary-component-minsize="250" secondary-component-minsize="250" primary-component-initialratio="0.8" (on-change)="onVChange($event)">
       <div class="split-pane-content-primary">
           <div class="left">
               <p-panel header="Вопросы">
-                <div class="row quest-panel" *ngFor="let vop of faq">
+                <div class="row quest-panel" *ngFor="let vop of searchModel">
                   <h4>Вопрос {{vop.id}}: </h4>       
                   <a style="cursor: pointer" (click)="panelClick(vop.id)">{{vop.quest}}</a> 
                 </div>
@@ -27,31 +33,5 @@
         </div>
       </div>
     </vertical-split-pane>
-
-
-
-    <!--<div class="row">
-      <div class="col-lg-4">
-        <p-panel header="Вопросы">
-          <div class="row quest-panel" *ngFor="let vop of faq">
-            <h4>Вопрос {{vop.id}}: </h4>       
-            <a style="cursor: pointer" (click)="panelClick(vop.id)">{{vop.quest}}</a> 
-          </div>
-        </p-panel>
-      </div>
-      <div class="col-lg-8">
-        <p-panel header="Ответы">
-          <p-tabView [activeIndex]=aindex (onChange)="tabChenge($event.index)">  
-            <p-tabPanel header="Вопрос {{item.id}}" *ngFor="let item of otvModel" [selected]="item.selected">
-            <div class="btn-close-css"><a (click)="handleClose()"><i class="material-icons">highlight_off</i></a></div>
-              <div class="label-css" *ngFor="let otvet of item.otvet" >
-                <label>{{otvet.text}}</label>
-              </div>
-              <div [innerHTML]="item.dopContent" style="text-align: left"></div>
-            </p-tabPanel>
-          </p-tabView> 
-        </p-panel>
-      </div>
-    </div>-->
 </p-panel>
 </div>
